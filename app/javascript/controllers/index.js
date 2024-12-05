@@ -2,6 +2,13 @@
 // Run that command whenever you add a new controller or create them with
 // ./bin/rails generate stimulus controllerName
 
+// import { Application } from "@hotwired/stimulus"
+// import { definitionsFromContext } from "@hotwired/stimulus-loading"
+
+// const application = Application.start()
+// const context = require.context("controllers", true, /\.js$/)
+// application.load(definitionsFromContext(context))
+
 import { application } from "./application"
 
 import HelloController from "./hello_controller"
