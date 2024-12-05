@@ -35,9 +35,9 @@ gem "bootsnap", require: false
 gem "bootstrap", "~> 5.2.0"
 gem "sorcery", "0.16.3"
 gem "importmap-rails"
-gem 'better_errors'
-gem 'binding_of_caller'
-gem 'pry-rails'
+gem "better_errors"
+gem "binding_of_caller"
+gem "pry-rails"
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
