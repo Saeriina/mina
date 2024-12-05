@@ -33,7 +33,7 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 gem "bootstrap", "~> 5.2.0"
-gem "sorcery", "0.16.3"
+gem "sorcery", "0.17.0"
 gem "importmap-rails"
 gem "better_errors"
 gem "binding_of_caller"
