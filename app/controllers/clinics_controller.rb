@@ -1,5 +1,4 @@
 class ClinicsController < ApplicationController
-
   def new
     @clinics = Clinic.new
   end
@@ -7,6 +6,4 @@ class ClinicsController < ApplicationController
   def index
     @clinics = Clinic.includes(:user)
   end
-
-  
 end
