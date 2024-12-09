@@ -1,0 +1,48 @@
+<div class="container pt-3">
+  <div class="row">
+    <div class="col-lg-10 offset-lg-1">
+      <!-- 検索フォーム -->
+      <form>
+        <div class="input-group mb-3"><input class="form-control" placeholder="検索ワード" type="search"/>
+          <div class="input-group-append"><input type="submit" value="検索" class="btn btn-primary"/></div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- クリニック一覧 -->
+  <div class="row">
+    <div class="col-12">
+      <div class="row">
+        <% if @clinic.present? %>
+          <% @clinic.each do |clinic| %>
+            <div class="col-sm-12 col-lg-4 mb-3">
+              <div id="clinic-id-<%= clinic.id %>">
+                <div class="card">
+                  <%= image_tag "board_placeholder.png", class: "card-img-top", width: "300", height:"200" %>
+                  <div class="card-body">
+                    <div class="d-flex">
+                      <h4 class="card-title">
+                        <%= link_to clinic.clinic_name, '#' %>
+                      </h4>
+                      <div class='ms-auto'>
+                        <%= link_to '#', id: 'button-edit-#{board.id}' do %>
+                          <i class="bi bi-pencil-fill"></i>
+                        <% end %>
+                        <%= link_to '#', id: 'button-delete-#{board.id}', method: :delete, data: {confirm: ''} do %>
+                          <i class="bi bi-trash-fill"></i>
+                        <% end %>
+                      </div>
+                    </div>
+                    <p class="card-text">本文</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <div class="mb-3">掲示板がありません</div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
