@@ -3,15 +3,55 @@
     <div class="col-lg-8 offset-lg-2">
       <h1><%= "クリニック登録" %></h1>
       <%= form_with model: @clinic, class: "new_clinic" do |f| %>
+        <!-- クリニック名 -->
         <div class="mb-3">
-          <%= f.label :clinic_name %>
+          <%= f.label :clinic_name, "クリニック名" %>
           <%= f.text_field :clinic_name, class: "form-control" %>
         </div>
+
+        <!-- ドクター名 -->
         <div class="mb-3">
-          <%= f.label :doctor_name %>
+          <%= f.label :doctor_name, "ドクター名" %>
           <%= f.text_field :doctor_name, class: "form-control" %>
         </div>
-        <%= f.submit nil, class: "btn btn-primary" %>
+
+        <!-- 面会可能日時 -->
+        <div class="mb-3">
+          <%= f.fields_for :available_times do |at| %>
+            <!-- 曜日の選択 -->
+            <div class="mb-3">
+              <%= f.label :weekday, "曜日" %>
+              <div>
+                <% %w[Monday Tuesday Wednesday Thursday Friday].each do |day| %>
+                  <div class="form-check form-check-inline">
+                    <%= f.check_box :weekday, { multiple: true, class: "form-check-input" }, day, nil %>
+
+                    <%= f.label :weekday, day, class: "form-check-label" %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+
+            <!-- 面会可能な時間帯 -->
+            <div class="mb-2">
+              <%= f.label :available_time_slot, "時間" %>
+              <%= f.text_field :available_time_slot, class: "form-control", placeholder: "例: 12:00" %>
+            </div>
+          <% end %>
+        </div>
+
+        
+        <!-- 面会頻度 -->
+        <div class="mb-3">
+          <%= f.label :visit_intervals, "面会頻度" %>
+          <%= f.fields_for :visit_intervals do |vi| %>
+            <%= f.label :interval, "訪問頻度 (日数)" %>
+            <%= f.select :interval, [["30日", 30],["45日", 45], ["60日", 60], ["90日", 90], ["120日", 120], ["180日", 180], ["360日", 360]], { prompt: "選択してください" }, class: "form-control" %>
+          <% end %>
+        </div>
+
+        <!-- 送信ボタン -->
+        <%= f.submit "登録", class: "btn btn-primary" %>
       <% end %>
     </div>
   </div>
