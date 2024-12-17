@@ -8,7 +8,4 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
 
   has_many :clinics, dependent: :destroy
-  has_many :available_times, dependent: :destroy
-  has_many :appointments, dependent: :destroy
-  has_many :visit_intervals, dependent: :destroy
 end
