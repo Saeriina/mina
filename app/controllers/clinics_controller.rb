@@ -8,15 +8,21 @@ class ClinicsController < ApplicationController
   def index
     @clinics = Clinic.includes(:user)
   end
-
+  
   def create
     @clinic = current_user.clinics.build(clinic_params)
     if @clinic.save
       redirect_to clinics_path, success: "#{Clinic.model_name.human}が作成されました。"
     else
+      puts @clinic.errors.full_messages
       flash.now[:danger] = "#{Clinic.model_name.human}の作成に失敗しました。"
       render :new, status: :unprocessable_entity
     end
+  end
+  
+
+  def show
+    @clinic = Clinic.find(params[:id])
   end
 
   private
@@ -24,7 +30,7 @@ class ClinicsController < ApplicationController
   def clinic_params
     params.require(:clinic).permit(:clinic_name, :doctor_name,
     available_times_attributes: [ :available_time_slot, weekday: [] ],
-    visit_intervals_attributes: [ :interval ],
+    visit_intervals_attributes: [ :interval ]
   )
   end
 end

@@ -18,7 +18,7 @@
                   <div class="card-body">
                     <div class="d-flex">
                       <h4 class="card-title">
-                        <%= link_to clinic.clinic_name, '#' %>
+                        <%= link_to clinic.clinic_name, clinic_path(clinic) %>
                       </h4>
                       <div class='ms-auto'>
                         <%= link_to '#', id: 'button-edit-#{clinic.id}' do %>
