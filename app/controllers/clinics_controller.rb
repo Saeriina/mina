@@ -8,7 +8,7 @@ class ClinicsController < ApplicationController
   def index
     @clinics = Clinic.includes(:user)
   end
-  
+
   def create
     @clinic = current_user.clinics.build(clinic_params)
     if @clinic.save
@@ -19,7 +19,6 @@ class ClinicsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-  
 
   def show
     @clinic = Clinic.find(params[:id])
