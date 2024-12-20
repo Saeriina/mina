@@ -20,14 +20,16 @@
                       <h4 class="card-title">
                         <%= link_to clinic.clinic_name, clinic_path(clinic) %>
                       </h4>
-                      <div class='ms-auto'>
-                        <%= link_to '#', id: 'button-edit-#{clinic.id}' do %>
-                          <i class="bi bi-pencil-fill"></i>
-                        <% end %>
-                        <%= link_to '#', id: 'button-delete-#{clinic.id}', method: :delete, data: {confirm: ''} do %>
-                          <i class="bi bi-trash-fill"></i>
-                        <% end %>
-                      </div>
+                      <% if current_user.own?(clinic) %>
+                        <div class='ms-auto'>
+                          <%= link_to edit_clinic_path(clinic), id: 'button-edit-#{clinic.id}' do %>
+                            <i class="bi bi-pencil-fill"></i>
+                          <% end %>
+                          <%= link_to clinic_path(clinic), id: 'button-delete-#{clinic.id}', method: :delete, data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } do %>
+                            <i class="bi bi-trash-fill"></i>
+                          <% end %>
+                        </div>
+                      <% end %>
                     </div>
                   </div>
                 </div>

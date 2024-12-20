@@ -25,4 +25,6 @@ class Clinic < ApplicationRecord
       visit_interval.user_id = self.user_id if visit_interval.user_id.nil?
     end
   end
+
+  
 end

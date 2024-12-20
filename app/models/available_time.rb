@@ -10,9 +10,6 @@ class AvailableTime < ApplicationRecord
   def validate_weekdays
     valid_days = %w[ Monday Tuesday Wednesday Thursday Friday ]
     visitable_days = weekday.is_a?(String) ? JSON.parse(weekday) : weekday
-    puts "DEBUG: weekday = #{weekday.inspect}" # デバッグ用
-    puts "DEBUG: visitable_days = #{visitable_days.inspect}" # デバッグ用
-
 
     invalid_days = visitable_days - valid_days
     if invalid_days.any?

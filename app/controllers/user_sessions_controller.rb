@@ -5,6 +5,7 @@ class UserSessionsController < ApplicationController
 
   def create
     @user = login(params[:email], params[:password])
+    Rails.logger.debug("Creating user: #{@user.inspect}")
     if @user
       redirect_to root_path
     else
