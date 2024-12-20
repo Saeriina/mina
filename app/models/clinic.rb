@@ -26,5 +26,4 @@ class Clinic < ApplicationRecord
     end
   end
 
-  
 end

@@ -27,7 +27,7 @@ class ClinicsController < ApplicationController
   def edit
     @clinic = current_user.clinics.find(params[:id])
   end
-  
+
   def destroy
     clinic = current_user.clinics.find(params[:id])
     clinic.destroy!
