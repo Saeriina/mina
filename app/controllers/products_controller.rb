@@ -20,13 +20,13 @@ class ProductsController < ApplicationController
   def edit
     @product = current_user.products.find(params[:id])
   end
-  
+
   def destroy
     product = current_user.products.find(params[:id])
     product.destroy!
     redirect_to products_path, success: "#{Product.model_name.human}を削除しました。", status: :see_other
   end
-  
+
   def update
     @product = current_user.products.find(params[:id])
     if @product.update(product_params)
