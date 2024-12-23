@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
   def create
     @product = current_user.products.build(product_params)
     if @product.save
-      redirect_to products_path, success: "#{Product.model_name.human}が作成されました。"           
+      redirect_to products_path, success: "#{Product.model_name.human}が作成されました。"
     else
     flash.now[:danger] = "#{Product.model_name.human}の作成に失敗しました。"
     render :new, status: :unprocessable_entity
