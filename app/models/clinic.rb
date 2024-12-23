@@ -5,6 +5,7 @@ class Clinic < ApplicationRecord
   has_many :available_times, dependent: :destroy
   has_many :appointments, dependent: :destroy
   has_many :visit_intervals, dependent: :destroy
+  has_many :prescriptions, dependent: :destroy
   belongs_to :user
 
   accepts_nested_attributes_for :available_times, :visit_intervals

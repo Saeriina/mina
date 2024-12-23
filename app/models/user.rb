@@ -8,6 +8,7 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
 
   has_many :clinics, dependent: :destroy
+  has_many :products, dependent: :destroy
 
   def own?(object)
     id == object&.user_id
