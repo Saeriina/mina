@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-8 offset-lg-2">
-      <h1><%= "製品登録" %></h1>
+      <h1><%= "製品編集" %></h1>
       <%= form_with model: @product, class: "new_product" do |f| %>
         <div class="mb-3">
           <%= f.label :product_name, "製品名" %>
@@ -16,7 +16,7 @@
           <%= f.text_field :diagnosis, class: "form-control" %>
         </div>
         
-        <%= f.submit "登録", class: "btn btn-primary" %>
+        <%= f.submit "更新", class: "btn btn-primary" %>
       <% end %>
     </div>
   </div>
