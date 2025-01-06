@@ -48,7 +48,7 @@ class ClinicsController < ApplicationController
 
   def clinic_params
     params.require(:clinic).permit(:clinic_name, :doctor_name,
-    available_times_attributes: [ :id, :available_time_slot, weekday: [] ],
+    available_times_attributes: [ :id, available_time_slot: [], weekday: [] ],
     visit_intervals_attributes: [ :id, :interval ]
   )
   end

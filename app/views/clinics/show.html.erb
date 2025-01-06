@@ -36,7 +36,7 @@
           <% if @clinic.available_times.any? %>
             <% @clinic.available_times.each do |time| %>
               <p class="text-muted">
-                <strong>面会時間:</strong> <%= time.available_time_slot.strftime('%H:%M') %>
+                <strong>面会時間:</strong> <%= time.available_time_slot.gsub(/[\[\]\"]/, '') %>
               </p>
               <p class="text-muted">
                 <strong>曜日:</strong> <%= time.weekday.gsub(/[\[\]\"]/, '') %>

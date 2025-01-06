@@ -1,0 +1,53 @@
+<div class="container mt-5">
+	<h1 class="mb-4">スケジュール作成</h1>
+	<h2 class="mt-4">
+	<a href="#" class="btn btn-success">自動作成</a></h2>
+	
+	<div class="table-responsive">
+		<table class="table table-bordered">
+			<thead class="thead-light">
+				<tr>
+					<th scope="col"> </th>
+					<th scope="col">12:00</th>
+					<th scope="col">12:30</th>
+					<th scope="col">13:00</th>
+					<th scope="col">13:30</th>
+					<th scope="col">14:00</th>
+					<th scope="col">14:30</th>
+					<th scope="col">15:00</th>
+					<th scope="col">15:30</th>
+					<th scope="col">16:00</th>
+					<th scope="col">17:00</th>
+					<th scope="col">18:00</th>
+				</tr>
+			</thead>
+			<tbody>
+			    <% @dates.each do |date| %>
+					<tr>
+						<td>
+						    <p><%= date.strftime('%Y年%m月%d日 (%a)') %></p>
+						</td> 
+						<td><% @mon.each do |mon| %> <%= mon.clinic.clinic_name %><% end %></td>
+
+							
+						<td>12:30先</td>
+						<td>13:00先</td>
+						<td>13:30先</td>
+						<td>14:00先</td>
+						<td>14:30先</td>
+						<td>15:00先</td>
+						<td>15:30先</td>
+						<td>16:00先</td>
+						<td>17:00先</td>
+						<td>18:00先</td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="mt-4">
+		<a href="#" class="btn btn-success">保存</a>
+		<a href="#" class="btn btn-secondary">キャンセル</a>
+	</div>
+</div>
