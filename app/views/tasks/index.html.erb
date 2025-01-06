@@ -1,0 +1,55 @@
+<div class="container mt-5">
+	<h1 class="mb-4">タスク管理ページ</h1>
+	<!-- 本日の日付 -->
+	<div class="d-flex justify-content-between align-items-center mb-4">
+		<h2>本日の日付: <%= Date.today.strftime('%Y年%m月%d日 (%a)') %></h2>
+		<a href="<%= new_task_path %>" class="btn btn-primary">スケジュールを作成</a>
+	</div>
+
+<!-- 本日のスケジュール -->
+<div class="table-responsive">
+	<table class="table table-bordered">
+		<thead class="thead-light">
+			<tr>
+				<th scope="col"> </th>
+				<th scope="col">12:00</th>
+				<th scope="col">12:30</th>
+				<th scope="col">13:00</th>
+				<th scope="col">13:30</th>
+				<th scope="col">14:00</th>
+				<th scope="col">14:30</th>
+				<th scope="col">15:00</th>
+				<th scope="col">15:30</th>
+				<th scope="col">16:00</th>
+				<th scope="col">17:00</th>
+				<th scope="col">18:00</th>
+			</tr>
+		</thead>
+		<tbody>
+			    
+					<tr>
+						<td>
+						    <p><%= Date.today.strftime('%Y年%m月%d日 (%a)') %></p>
+						</td> 
+						<td><% @mon.each do |mon| %> <%= mon.clinic.clinic_name %><% end %></td>
+
+							
+						<td>12:30先</td>
+						<td>13:00先</td>
+						<td>13:30先</td>
+						<td>14:00先</td>
+						<td>14:30先</td>
+						<td>15:00先</td>
+						<td>15:30先</td>
+						<td>16:00先</td>
+						<td>17:00先</td>
+						<td>18:00先</td>
+					</tr>
+		</tbody>
+	</table>
+
+	
+	</div>
+	<h2>提出物</h2>
+</div>
+</div>
