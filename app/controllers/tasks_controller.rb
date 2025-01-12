@@ -15,12 +15,12 @@ class TasksController < ApplicationController
 
   def create
     input_clinic_name = params[:clinic_name]
-	  matching_clinic = Clinic.find_by(clinic_name: input_clinic_name)
-	
+    matching_clinic = Clinic.find_by(clinic_name: input_clinic_name)
+
     if matching_clinic
       clinic = Clinic.find(params[:clinic_id])
       @schedule = clinic.schedules.build(schedule_params)
-      
+
       if @schedule.save
         redirect_to tasks_path, notice: "スケジュールが保存されました"
       else
