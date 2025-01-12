@@ -6,6 +6,5 @@ Rails.application.routes.draw do
   post "login", to: "user_sessions#create"
   delete "logout", to: "user_sessions#destroy"
   resources :products, only: %i[index new create edit destroy update]
-  get "tasks", to: "tasks#index"
-  get "tasks/new", to: "tasks#new", as: :new_task
+  resources :tasks, only: %i[index new create]
 end

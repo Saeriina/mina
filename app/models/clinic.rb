@@ -6,12 +6,17 @@ class Clinic < ApplicationRecord
   has_many :appointments, dependent: :destroy
   has_many :visit_intervals, dependent: :destroy
   has_many :prescriptions, dependent: :destroy
+  has_many :schedules, dependent: :destroy
   belongs_to :user
 
   accepts_nested_attributes_for :available_times, :visit_intervals
 
   before_validation :assign_user_to_available_times
   before_validation :assign_user_to_visit_intervals
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[clinic_name]
+  end
 
   private
 
