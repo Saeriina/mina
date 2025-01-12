@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_03_063738) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_10_050421) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -67,6 +67,15 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_03_063738) do
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
+  create_table "schedules", force: :cascade do |t|
+    t.date "appointment_date", null: false
+    t.string "scheduled_time", null: false
+    t.bigint "clinic_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["clinic_id"], name: "index_schedules_on_clinic_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "crypted_password"
@@ -95,6 +104,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_03_063738) do
   add_foreign_key "prescriptions", "clinics"
   add_foreign_key "prescriptions", "products"
   add_foreign_key "products", "users"
+  add_foreign_key "schedules", "clinics"
   add_foreign_key "visit_intervals", "clinics"
   add_foreign_key "visit_intervals", "users"
 end

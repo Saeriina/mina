@@ -26,14 +26,12 @@
 			</tr>
 		</thead>
 		<tbody>
-			    
-					<tr>
-						<td>
-						    <p><%= Date.today.strftime('%Y年%m月%d日 (%a)') %></p>
-						</td> 
-						<td><% @mon.each do |mon| %> <%= mon.clinic.clinic_name %><% end %></td>
-
-							
+					<% @dates.each do |date| %>
+						<tr>
+							<td>
+								<p><%= date.strftime('%Y年%m月%d日 (%a)') %></p>
+							</td>
+						<td>12:00先</td>
 						<td>12:30先</td>
 						<td>13:00先</td>
 						<td>13:30先</td>
@@ -44,7 +42,8 @@
 						<td>16:00先</td>
 						<td>17:00先</td>
 						<td>18:00先</td>
-					</tr>
+						</tr>
+					<% end %>
 		</tbody>
 	</table>
 

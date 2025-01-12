@@ -27,19 +27,72 @@
 						<td>
 						    <p><%= date.strftime('%Y年%m月%d日 (%a)') %></p>
 						</td> 
-						<td><% @mon.each do |mon| %> <%= mon.clinic.clinic_name %><% end %></td>
-
-							
-						<td>12:30先</td>
-						<td>13:00先</td>
-						<td>13:30先</td>
-						<td>14:00先</td>
-						<td>14:30先</td>
-						<td>15:00先</td>
-						<td>15:30先</td>
-						<td>16:00先</td>
-						<td>17:00先</td>
-						<td>18:00先</td>
+						<td>
+							<%= form_with(url: new_task_path, method: :patch, local: true) do |f| %> 
+								<input type="text" name="clinic_name" class="form-control"
+									style: "border: none; outline: none; background: transparent; width: 100%;" >
+							<% end %>
+						</td>
+						<td>
+								<%= form_with(url: new_task_path, method: :patch, local: true) do |f| %> 
+									<input type="text" name="clinic_name" class="form-control"
+										style: "border: none; outline: none; background: transparent; width: 100%;" >
+								<% end %>
+							</td>
+							<td>
+							<%= form_with(url: new_task_path, method: :patch, local: true) do |f| %> 
+								<input type="text" name="clinic_name" class="form-control"
+									style: "border: none; outline: none; background: transparent; width: 100%;" >
+							<% end %>
+							</td>
+							<td>
+							<%= form_with(url: new_task_path, method: :patch, local: true) do |f| %> 
+								<input type="text" name="clinic_name" class="form-control"
+									style: "border: none; outline: none; background: transparent; width: 100%;" >
+							<% end %>
+							</td>
+							<td>
+							<%= form_with(url: new_task_path, method: :patch, local: true) do |f| %> 
+								<input type="text" name="clinic_name" class="form-control"
+									style: "border: none; outline: none; background: transparent; width: 100%;" >
+							<% end %>
+							</td>
+							<td>
+							<%= form_with(url: new_task_path, method: :patch, local: true) do |f| %> 
+								<input type="text" name="clinic_name" class="form-control"
+									style: "border: none; outline: none; background: transparent; width: 100%;" >
+							<% end %>
+							</td>
+							<td>
+							<%= form_with(url: new_task_path, method: :patch, local: true) do |f| %> 
+								<input type="text" name="clinic_name" class="form-control"
+									style: "border: none; outline: none; background: transparent; width: 100%;" >
+							<% end %>
+							</td>
+							<td>
+							<%= form_with(url: new_task_path, method: :patch, local: true) do |f| %> 
+								<input type="text" name="clinic_name" class="form-control"
+									style: "border: none; outline: none; background: transparent; width: 100%;" >
+							<% end %>
+							</td>
+							<td>
+							<%= form_with(url: new_task_path, method: :patch, local: true) do |f| %> 
+								<input type="text" name="clinic_name" class="form-control"
+									style: "border: none; outline: none; background: transparent; width: 100%;" >
+							<% end %>
+							</td>
+							<td>
+							<%= form_with(url: new_task_path, method: :patch, local: true) do |f| %> 
+								<input type="text" name="clinic_name" class="form-control"
+									style: "border: none; outline: none; background: transparent; width: 100%;" >
+							<% end %>
+							</td>
+							<td>
+							<%= form_with(url: new_task_path, method: :patch, local: true) do |f| %> 
+								<input type="text" name="clinic_name" class="form-control"
+									style: "border: none; outline: none; background: transparent; width: 100%;" >
+							<% end %>
+							</td>
 					</tr>
 				<% end %>
 			</tbody>
@@ -47,7 +100,7 @@
 	</div>
 
 	<div class="mt-4">
-		<a href="#" class="btn btn-success">保存</a>
+		<a href="/tasks/new" class="btn btn-success">保存</a>
 		<a href="#" class="btn btn-secondary">キャンセル</a>
 	</div>
 </div>
