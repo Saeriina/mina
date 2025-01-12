@@ -15,7 +15,7 @@
           <%= link_to edit_clinic_path(@clinic), id: "button-edit-#{@clinic.id}" do %>
             <i class="bi bi-pencil-fill"></i>
           <% end %>
-          <%= link_to clinic_path(@clinic), id: "button-delete-#{@clinic.id}", data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } do %>
+          <%= button_to clinic_path(@clinic), method: :delete, data: { turbo_confirm: "本当に削除しますか？" }, id: "button-delete-#{@clinic.id}" do %>
             <i class="bi bi-trash-fill"></i>
           <% end %>
         </div>
