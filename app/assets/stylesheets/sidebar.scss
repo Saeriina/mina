@@ -1,60 +1,24 @@
 /* サイドバーの全体レイアウト */
-.main-sidebar {
-    background-color: #343a40; /* サイドバーの背景色（暗いグレー） */
-    color: #fff; /* テキストを白く */
-    width: 250px; /* サイドバーの幅 */
-    min-height: 100vh; /* 縦いっぱいに広がる */
-    position: fixed; /* 固定位置 */
-  }
-  
-  /* サイドバー内のリンク */
-  .sidebar-menu li {
-    list-style: none; /* デフォルトの箇条書きスタイルを無効化 */
-  }
-  
-  .sidebar-menu li a {
-    display: flex; /* アイコンとテキストを横並び */
-    align-items: center; /* アイコンとテキストを中央揃え */
-    padding: 10px 15px; /* 内側の余白 */
-    color: #fff; /* リンク文字の色 */
-    text-decoration: none; /* 下線を削除 */
-    transition: background-color 0.3s; /* ホバー時のアニメーション */
-  }
-  
-  .sidebar-menu li a:hover {
-    background-color: #495057; /* ホバー時の背景色 */
-  }
-  
-  /* サイドバーのアイコン */
-  .sidebar-menu li a i {
-    margin-right: 10px; /* アイコンとテキストの間隔 */
-    font-size: 18px; /* アイコンのサイズ */
-  }
-  
-  /* ツリーメニュー */
-  .treeview > a {
-    cursor: pointer;
-  }
-  
-  .treeview-menu {
-    display: none; /* デフォルトで隠す */
-    padding-left: 20px; /* サブメニューを少し内側に */
-  }
-  
-  .treeview-menu li a {
-    font-size: 14px; /* サブメニューのテキストサイズ */
-    color: #c2c7d0; /* サブメニューの文字色 */
-  }
-  
-  .treeview:hover .treeview-menu {
-    display: block; /* ツリーメニューをホバー時に表示 */
+  /* サイドバー */
+  .sidebar {
+    background-color: rgba(255, 255, 255, 0.8); /* 白の半透明背景 */
+    min-width: 200px; /* サイドバーの幅 */
+    height: 100vh; /* サイドバーを画面全体の高さに設定 */
+    position: fixed; /* 固定位置に設定 */
+    z-index: 10; /* 背景画像より前面に表示 */
   }
 
-  nav {
-    width: 230px;
+  /* サイドバー内のリスト項目 */
+  .sidebar .list-group-item {
+    background-color: transparent; /* 項目背景を透明に */
+    border: none; /* 項目間のボーダーを削除 */
+    color: #333; /* 文字色を濃いグレーに設定 */
   }
 
-  .nav-link {
-    color: white;
-    background-color: rgba(255, 255, 255, 0.493);
+  .sidebar .list-group {
+    width: 95px;
+  }
+
+  .sidebar .list-group-item:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* ホバー時に薄い黒を表示 */
   }
