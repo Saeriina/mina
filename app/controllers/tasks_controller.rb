@@ -15,7 +15,7 @@ class TasksController < ApplicationController
     @schedules = Schedule.includes(:clinic).where(appointment_date: @dates)
 
     # 表示する時間帯を定義
-    @times = ["12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "17:00", "18:00"]
+    @times = [ "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "17:00", "18:00" ]
   end
 
   def new
@@ -24,7 +24,7 @@ class TasksController < ApplicationController
 
     @schedules = Schedule.includes(:clinic).where(appointment_date: @dates)
     # 表示する時間帯を定義
-    @times = ["12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "17:00", "18:00"]
+    @times = [ "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "17:00", "18:00" ]
   end
 
   def create
@@ -37,7 +37,7 @@ class TasksController < ApplicationController
       scheduled_time = params[:scheduled_time]
 
       # 日付から曜日を取得してマッピング
-      appointment_weekday = Date.parse(appointment_date).strftime('%A') # 例: "Monday"
+      appointment_weekday = Date.parse(appointment_date).strftime("%A") # 例: "Monday"
       available_weekday = DAY_MAPPING[appointment_weekday] # 例: "Mon"
 
       # AvailableTimeの確認
