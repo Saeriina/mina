@@ -21,27 +21,13 @@
             <!-- 曜日の選択 -->
             <div class="mb-3">
               <%= at.label :weekday, "曜日" %>
-              <div>
-                <% %w[Mon Tuesday Wednesday Thursday Friday].each do |day| %>
-                  <div class="form-check form-check-inline">
-                    <%= at.check_box :weekday, { multiple: true, class: "form-check-input" }, day, nil %>
-                    <%= at.label :weekday, day, class: "form-check-label" %>
-                  </div>
-                <% end %>
-              </div>
+              <%= at.select :weekday, options_for_select(%w[Monday Tuesday Wednesday Thursday Friday]), {}, class: "form-select" %>
             </div>
-
+          
             <!-- 面会可能な時間帯 -->
             <div class="mb-2">
-            <%= at.label :available_time_slot, "時間" %>
-              <div>
-                <% %w[12:00 12:30 13:00 13:30 14:00 14:30 15:00 15:30 16:00 17:00 18:00].each do |t| %>
-                  <div class="form-check form-check-inline">
-                    <%= at.check_box :available_time_slot, { multiple: true, class: "form-check-input" }, t, nil %>
-                    <%= at.label :available_time_slot, t, class: "form-check-label" %>
-                  </div>
-                <% end %>
-              </div>
+              <%= at.label :available_time_slot, "時間" %>
+              <%= at.select :available_time_slot, options_for_select(%w[12:00 12:30 13:00 13:30 14:00 14:30 15:00 15:30 16:00 17:00 18:00]), {}, class: "form-select" %>
             </div>
           <% end %>
         </div>

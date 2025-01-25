@@ -2,100 +2,52 @@
 	<h1 class="mb-4">スケジュール作成</h1>
 	<h2 class="mt-4">
 	<a href="#" class="btn btn-success">自動作成</a></h2>
-	
+
+	<!-- 本日のスケジュール -->
 	<div class="table-responsive">
 		<table class="table table-bordered">
 			<thead class="thead-light">
 				<tr>
-					<th scope="col"> </th>
-					<th scope="col">12:00</th>
-					<th scope="col">12:30</th>
-					<th scope="col">13:00</th>
-					<th scope="col">13:30</th>
-					<th scope="col">14:00</th>
-					<th scope="col">14:30</th>
-					<th scope="col">15:00</th>
-					<th scope="col">15:30</th>
-					<th scope="col">16:00</th>
-					<th scope="col">17:00</th>
-					<th scope="col">18:00</th>
+				<th scope="col"> </th>
+				  <% @times.each do |time| %>
+          		    <th scope="col"><%= time %></th>
+        		  <% end %>
 				</tr>
 			</thead>
 			<tbody>
-			    <% @dates.each do |date| %>
+				<% @dates.each do |date| %>
 					<tr>
+						<td><p><%= date.strftime('%Y年%m月%d日 (%a)') %></p></td>
+						<% @times.each do |time| %>
 						<td>
-						    <p><%= date.strftime('%Y年%m月%d日 (%a)') %></p>
-						</td> 
-						<td>
-							<%= form_with(url: new_task_path, method: :patch, local: true) do |f| %> 
-								<input type="text" name="clinic_name" class="form-control"
-									style: "border: none; outline: none; background: transparent; width: 100%;" >
+							<% schedule = @schedules.find { |s| s.appointment_date == date && s.scheduled_time == time } %>
+							<% if schedule %>
+								<!-- スケジュールが既にある場合はクリニック名を表示 -->
+								<%= schedule.clinic.clinic_name %>
+
+								
+								<%= button_to task_path(schedule), method: :delete, data: { turbo_confirm: "本当に削除しますか？" }, id: "button-delete-#{schedule.id}" do %>
+									<i class="bi bi-trash-fill"></i>
+								<% end %>
+							<% else %>
+								<!-- スケジュールがない場合はフォームを表示 -->
+								<%= form_with(url: tasks_path, method: :post, local: true) do |f| %>
+									<%= hidden_field_tag :appointment_date, date %>
+									<%= hidden_field_tag :scheduled_time, time %>
+									
+									<!-- クリニック名入力用のフィールド -->
+									<input type="text" name="clinic_name" class="form-control"
+										style="border: none; outline: none; background: transparent; width: 100%;">
+						
+									<%= f.submit "保存", class: "btn btn-primary" %>
+								<% end %>
 							<% end %>
 						</td>
-						<td>
-								<%= form_with(url: new_task_path, method: :patch, local: true) do |f| %> 
-									<input type="text" name="clinic_name" class="form-control"
-										style: "border: none; outline: none; background: transparent; width: 100%;" >
-								<% end %>
-							</td>
-							<td>
-							<%= form_with(url: new_task_path, method: :patch, local: true) do |f| %> 
-								<input type="text" name="clinic_name" class="form-control"
-									style: "border: none; outline: none; background: transparent; width: 100%;" >
-							<% end %>
-							</td>
-							<td>
-							<%= form_with(url: new_task_path, method: :patch, local: true) do |f| %> 
-								<input type="text" name="clinic_name" class="form-control"
-									style: "border: none; outline: none; background: transparent; width: 100%;" >
-							<% end %>
-							</td>
-							<td>
-							<%= form_with(url: new_task_path, method: :patch, local: true) do |f| %> 
-								<input type="text" name="clinic_name" class="form-control"
-									style: "border: none; outline: none; background: transparent; width: 100%;" >
-							<% end %>
-							</td>
-							<td>
-							<%= form_with(url: new_task_path, method: :patch, local: true) do |f| %> 
-								<input type="text" name="clinic_name" class="form-control"
-									style: "border: none; outline: none; background: transparent; width: 100%;" >
-							<% end %>
-							</td>
-							<td>
-							<%= form_with(url: new_task_path, method: :patch, local: true) do |f| %> 
-								<input type="text" name="clinic_name" class="form-control"
-									style: "border: none; outline: none; background: transparent; width: 100%;" >
-							<% end %>
-							</td>
-							<td>
-							<%= form_with(url: new_task_path, method: :patch, local: true) do |f| %> 
-								<input type="text" name="clinic_name" class="form-control"
-									style: "border: none; outline: none; background: transparent; width: 100%;" >
-							<% end %>
-							</td>
-							<td>
-							<%= form_with(url: new_task_path, method: :patch, local: true) do |f| %> 
-								<input type="text" name="clinic_name" class="form-control"
-									style: "border: none; outline: none; background: transparent; width: 100%;" >
-							<% end %>
-							</td>
-							<td>
-							<%= form_with(url: new_task_path, method: :patch, local: true) do |f| %> 
-								<input type="text" name="clinic_name" class="form-control"
-									style: "border: none; outline: none; background: transparent; width: 100%;" >
-							<% end %>
-							</td>
-							<td>
-							<%= form_with(url: new_task_path, method: :patch, local: true) do |f| %> 
-								<input type="text" name="clinic_name" class="form-control"
-									style: "border: none; outline: none; background: transparent; width: 100%;" >
-							<% end %>
-							</td>
+						<% end %>
 					</tr>
 				<% end %>
-			</tbody>
+		  </tbody>
+
 		</table>
 	</div>
 
