@@ -6,7 +6,8 @@ class ClinicsController < ApplicationController
   end
 
   def index
-    @clinics = Clinic.includes(:user)
+    @q  = Clinic.ransack(params[:q])
+    @clinics = @q.result.includes(:user)
   end
 
   def create

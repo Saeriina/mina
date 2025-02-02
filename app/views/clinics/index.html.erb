@@ -2,6 +2,9 @@
   <!-- クリニック一覧 -->
   <div class="row">
     <div class="col-12">
+    <div class="col-lg-5">
+      <%= render 'search_form', q: @q, url: clinics_path %>
+    </div>
       <div class="row">
         <% if @clinics.present? %>
           <% @clinics.each do |clinic| %>

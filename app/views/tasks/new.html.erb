@@ -1,8 +1,8 @@
 <div class="container mt-5">
 	<h1 class="mb-4">スケジュール作成</h1>
-	<h2 class="mt-4">
-	<a href="#" class="btn btn-success">自動作成</a></h2>
-
+	<table class="table mt-4">
+	<%= button_to "スケジュール自動作成", auto_schedule_tasks_path, method: :post, class: "btn btn-primary" %>
+    <%= link_to "スケジュール自動作成2", auto_schedule_tasks_path, method: :post, class: "btn btn-primary" %>
 	<!-- 本日のスケジュール -->
 	<div class="table-responsive">
 		<table class="table table-bordered">
