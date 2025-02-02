@@ -90,7 +90,7 @@ class TasksController < ApplicationController
     # 2か月間のスケジュール期間
     start_date = Date.today
     end_date = start_date + 2.months
-   
+
     # スケジュール表の日付と時間を取得
     schedule_dates = (start_date..end_date).to_a
     schedule_times = @times # 既存ロジックから時間リストを取得
