@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
   has_many :clinics, dependent: :destroy
   has_many :products, dependent: :destroy
+  has_many :submissions, dependent: :destroy
 
   def own?(object)
     id == object&.user_id
