@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 offset-lg-2">
+      <h1><%= "提出物登録" %></h1>
+      <%= form_with model: @submission, class: "new_submission" do |f| %>
+        <div class="mb-3">
+          <%= f.label :title, "タイトル" %>
+          <%= f.text_field :title, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :description, "説明" %>
+          <%= f.text_field :description, class: "form-control" %>
+        </div>
+
+        <!-- 提出期限 -->
+        <div class="mb-3">
+          <%= f.label :due_date, "提出期限" %>
+          <%= f.date_select :due_date, class: "form-control" %>
+        </div>
+
+        <!-- 送信ボタン -->
+        <%= f.submit "登録", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>

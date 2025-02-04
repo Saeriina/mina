@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  before_action :delete_expired_submissions, only: :index
+
   DAY_MAPPING = {
     "Monday" => "Monday",
     "Tuesday" => "Tuesday",
@@ -9,13 +11,16 @@ class TasksController < ApplicationController
 
   def index
     # 表示する日付を生成
-    @dates = (0..60).map { |i| Date.today + i }
+    @dates = (0..6).map { |i| Date.today + i }
 
     # スケジュールデータを取得
     @schedules = Schedule.includes(:clinic).where(appointment_date: @dates)
 
     # 表示する時間帯を定義
     @times = [ "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "17:00", "18:00" ]
+
+    # 提出物のデータを取得
+		@submissions = Submission.includes(:user)
   end
 
   def new
@@ -154,5 +159,9 @@ class TasksController < ApplicationController
     end
     # スケジュール作成後にタスク一覧ページへリダイレクト
     redirect_to tasks_path, notice: "スケジュールが自動作成されました。"
+  end
+
+  def delete_expired_submissions
+    Submission.where("due_date < ?", Date.today).destroy_all
   end
 end
