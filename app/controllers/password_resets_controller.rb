@@ -1,12 +1,12 @@
 class PasswordResetsController < ApplicationController
-  skip_before_action :require_login, only: [:new, :create, :edit, :update]
+  skip_before_action :require_login, only: [ :new, :create, :edit, :update ]
   def new; end
 
   def create
     @user = User.find_by_email(params[:email])
 
     @user.deliver_reset_password_instructions! if @user
-    redirect_to(root_path, :notice => 'パスワードリセットメールを送信しました')
+    redirect_to(root_path, :notice => "パスワードリセットメールを送信しました")
   end
 
   def edit
@@ -15,7 +15,6 @@ class PasswordResetsController < ApplicationController
 
     if @user.blank?
       not_authenticated
-      return
     end
   end
 
@@ -29,11 +28,11 @@ class PasswordResetsController < ApplicationController
     end
 
     @user.password_confirmation = params[:user][:password_confirmation]
-    
+
     if @user.change_password(params[:user][:password])
-      redirect_to(root_path, :notice => 'パスワードがリセットされました。')
+      redirect_to(root_path, notice: "パスワードがリセットされました。")
     else
-      render :action => "edit"
+      render :edit
     end
   end
 end
