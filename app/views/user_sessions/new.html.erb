@@ -20,7 +20,8 @@
       <% end %>
       <div class='text-center'>
         <%= link_to '登録ページへ', new_user_path %>
-        <%= link_to 'パスワードをお忘れの方はこちら', '#' %>
+        <h5>パスワードをお忘れですか？</h5>
+        <%= render 'forgot_password_form' %>
       </div>
     </div>
   </div>

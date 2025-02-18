@@ -13,4 +13,6 @@ Rails.application.routes.draw do
       get :auto_schedule
     end
   end
+  resources :password_resets, only: [ :create, :edit, :update, :new ]
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end
