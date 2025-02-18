@@ -37,7 +37,6 @@ gem "sorcery", "0.17.0"
 gem "importmap-rails"
 gem "pry-rails"
 gem "ransack", ">= 3.3.0"
-gem "letter_opener_web", "2.0.0"
 gem "config", "4.0.0"
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
@@ -54,6 +53,7 @@ group :development, :test do
 
   gem "better_errors"
   gem "binding_of_caller"
+  gem "letter_opener_web", "2.0.0"
 end
 
 group :development do
