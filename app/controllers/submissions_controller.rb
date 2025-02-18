@@ -6,9 +6,9 @@ class SubmissionsController < ApplicationController
   def create
     @submission = current_user.submissions.build(submission_params)
     if @submission.save
-      redirect_to tasks_path, success: "#{Submission.model_name.human}が作成されました。"
+      redirect_to tasks_path, success: "提出物が登録されました。"
     else
-      flash.now[:danger] = "#{Submission.model_name.human}の作成に失敗しました。"
+      flash.now[:danger] = "提出物の登録に失敗しました。"
       render :new, status: :unprocessable_entity
     end
   end

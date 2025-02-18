@@ -33,6 +33,10 @@ class TasksController < ApplicationController
   end
 
   def create
+    @times = [ "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "17:00", "18:00" ]
+    @dates = (0..60).map { |i| Date.today + i }
+    @schedules = Schedule.includes(:clinic).where(appointment_date: @dates)
+
     input_clinic_name = params[:clinic_name]
     matching_clinic = Clinic.find_by(clinic_name: input_clinic_name)
 
@@ -60,21 +64,21 @@ class TasksController < ApplicationController
         )
 
         if @schedule.save
-          redirect_to tasks_path, notice: "スケジュールが保存されました"
+          redirect_to tasks_path, success: "スケジュールが作成されました。"
         else
           # 保存失敗時の処理
-          flash[:alert] = "スケジュールの保存に失敗しました: #{@schedule.errors.full_messages.join(', ')}"
+          flash.now[:danger] = "スケジュールの保存に失敗しました"
           render :new, status: :unprocessable_entity
         end
       else
         # AvailableTimeが存在しない場合
-        flash[:alert] = "指定された日時は面会不可です"
-        redirect_to new_task_path
+        flash.now[:danger] = "指定された日時は面会不可です"
+        render :new, status: :unprocessable_entity
       end
     else
       # クリニックが見つからない場合
-      flash[:alert] = "指定されたクリニックが見つかりません"
-      redirect_to new_task_path
+      flash.now[:danger] = "指定されたクリニックが見つかりません"
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -84,7 +88,7 @@ class TasksController < ApplicationController
 
     # スケジュールを削除
     if schedule.destroy
-      redirect_to tasks_path, notice: "スケジュールを削除しました"
+      redirect_to tasks_path, success: "スケジュールを削除しました"
     else
       redirect_to tasks_path, alert: "スケジュールの削除に失敗しました"
     end

@@ -13,10 +13,10 @@ class ClinicsController < ApplicationController
   def create
     @clinic = current_user.clinics.build(clinic_params)
     if @clinic.save
-      redirect_to clinics_path, success: "#{Clinic.model_name.human}が作成されました。"
+      redirect_to clinics_path, success: "クリニックが作成されました。"
     else
       puts @clinic.errors.full_messages
-      flash.now[:danger] = "#{Clinic.model_name.human}の作成に失敗しました。"
+      flash.now[:danger] = "クリニックの作成に失敗しました。"
       render :new, status: :unprocessable_entity
     end
   end
@@ -32,15 +32,15 @@ class ClinicsController < ApplicationController
   def destroy
     clinic = current_user.clinics.find(params[:id])
     clinic.destroy!
-    redirect_to clinics_path, success: "#{Clinic.model_name.human}を削除しました。", status: :see_other
+    redirect_to clinics_path, success: "クリニックを削除しました。", status: :see_other
   end
 
   def update
     @clinic = current_user.clinics.find(params[:id])
     if @clinic.update(clinic_params)
-      redirect_to clinic_path(@clinic), success: "#{Clinic.model_name.human}を更新しました。"
+      redirect_to clinic_path(@clinic), success: "クリニックを更新しました。"
     else
-      flash.now[:danger] = "#{Clinic.model_name.human}の更新に失敗しました。"
+      flash.now[:danger] = "クリニックの更新に失敗しました。"
       render :edit, status: :unprocessable_entity
     end
   end
