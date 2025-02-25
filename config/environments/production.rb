@@ -100,7 +100,20 @@ Rails.application.configure do
   #   "example.com",     # Allow requests from example.com
   #   /.*\.example\.com/ # Allow requests from subdomains like `www.example.com`
   # ]
-  config.action_mailer.default_url_options = { host: "mina.fly.dev", protocol: "https" }
+  config.action_mailer.default_url_options = { host: ENV['APP_HOST'], protocol: "https" }
+
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = {
+    port: ENV['SMTP_PORT'].to_i,
+    address: ENV['SMTP_ADDRESS'],
+    domain: ENV['SMTP_DOMAIN'],
+    user_name: ENV['SMTP_USERNAME'], #Gmailアカウントのメールアドレス
+    password: ENV['SMTP_PASSWORD'], #Gmailで設定したアプリパスワード
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
+
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 end
