@@ -105,11 +105,11 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.smtp_settings = {
-    port: ENV['SMTP_PORT'].to_i,
-    address: ENV['SMTP_ADDRESS'],
-    domain: ENV['SMTP_DOMAIN'],
-    user_name: ENV['SMTP_USERNAME'], #Gmailアカウントのメールアドレス
-    password: ENV['SMTP_PASSWORD'], #Gmailで設定したアプリパスワード
+    port: ENV["SMTP_PORT"].to_i,
+    address: ENV["SMTP_ADDRESS"],
+    domain: ENV["SMTP_DOMAIN"],
+    user_name: ENV["SMTP_USERNAME"],
+    password: ENV["SMTP_PASSWORD"],
     authentication: :plain,
     enable_starttls_auto: true
   }
