@@ -15,6 +15,11 @@
           <%= f.text_field :doctor_name, class: "form-control" %>
         </div>
 
+        <div class="mb-3">
+	        <%= f.label :url, "URL" %>
+	        <%= f.text_field :url, class: "form-control" %>
+        </div>
+
         <%= f.fields_for :available_times do |at| %>
           <!-- 曜日の選択 -->
           <div class="mb-3">
