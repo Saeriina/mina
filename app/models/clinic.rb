@@ -14,7 +14,7 @@ class Clinic < ApplicationRecord
   before_validation :assign_user_to_visit_intervals
 
   geocoded_by :address, latitude: :latitude, longitude: :longitude  # 住所をもとに緯度・経度を取得
-  after_validation :geocode, if: ->(obj){ obj.address.present? }
+  after_validation :geocode, if: ->(obj) { obj.address.present? }
 
   def self.ransackable_attributes(auth_object = nil)
     %w[clinic_name]
