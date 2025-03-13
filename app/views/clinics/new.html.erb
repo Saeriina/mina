@@ -15,9 +15,16 @@
           <%= f.text_field :doctor_name, class: "form-control" %>
         </div>
 
+        <!-- クリニックホームページurl -->
         <div class="mb-3">
 	        <%= f.label :url, "URL" %>
 	        <%= f.text_field :url, class: "form-control" %>
+        </div>
+
+        <!-- 住所 -->
+        <div class="mb-3">
+          <%= f.label :address, "住所" %>
+          <%= f.text_field :address, class: "form-control" %>
         </div>
 
         <%= f.fields_for :available_times do |at| %>
