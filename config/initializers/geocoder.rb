@@ -3,7 +3,7 @@ Geocoder.configure(
   lookup: :google,
 
   # Google Maps API キーを環境変数から取得
-  api_key: ENV["GOOGLE_MAP_API_KEY"],
+  api_key: ENV["GOOGLE_MAPS_API_KEY"],
 
   # HTTPS 通信を使用
   use_https: true,
