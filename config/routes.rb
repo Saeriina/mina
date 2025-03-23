@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   root "static_pages#top"
+  get "terms_of_use", to: "static_pages#terms_of_use"
+  get "privacy_policy", to: "static_pages#privacy_policy"
   resources :users, only: %i[new create]
   resources :clinics, only: %i[index new create show edit destroy update]
   get "login", to: "user_sessions#new"
