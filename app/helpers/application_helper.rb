@@ -8,7 +8,7 @@ module ApplicationHelper
         canonical: "https://mina.fly.dev", # カノニカルURL
         noindex: !Rails.env.production?, # 本番環境以外では検索エンジンにインデックスさせない
         twitter: {
-          card: "summary_large_image" # Twitterカードの種類
+          card: "summary" # Twitterカードの種類
         },
         og: {
           title: "Clinico for MR", # OGPタイトル
