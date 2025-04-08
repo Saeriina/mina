@@ -41,6 +41,8 @@ gem "config", "4.0.0"
 gem "geocoder"
 gem "dotenv-rails"
 gem "meta-tags"
+gem "omniauth-google-oauth2"
+gem "omniauth"
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 

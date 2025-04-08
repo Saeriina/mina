@@ -9,6 +9,10 @@
         <li class="nav-item">
           <%= link_to 'ログイン', login_path, class: "nav-link" %>
         </li>
+        <li class="nav-item">
+          
+          <%= button_to "Googleでログイン", "/auth/google_oauth2", method: :post %>
+        </li>
       </ul>
     </div>
   </div>
