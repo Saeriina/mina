@@ -14,4 +14,17 @@ class User < ApplicationRecord
   def own?(object)
     id == object&.user_id
   end
+
+  def self.find_or_create_from_google(auth)
+    user = find_or_initialize_by(email: auth['info']['email'])
+
+    if user.new_record?
+      user.name = auth['info']['name']
+      user.uid = auth['uid']
+      user.provider = 'google'
+      user.save!
+    end
+    user
+  end
+
 end

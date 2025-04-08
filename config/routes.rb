@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   end
   resources :password_resets, only: [ :create, :edit, :update, :new ]
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+  post "/auth/google_oauth2/callback", to: "user_sessions#google_auth"
+  post "/auth/failure", to: redirect("/")
 end

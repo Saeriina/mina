@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_03_09_030240) do
+ActiveRecord::Schema[7.2].define(version: 2025_04_03_005333) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -89,8 +89,11 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_09_030240) do
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
     t.integer "access_count_to_reset_password_page", default: 0
+    t.string "uid"
+    t.string "provider"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
+    t.index ["uid"], name: "index_users_on_uid"
   end
 
   create_table "visit_intervals", force: :cascade do |t|
