@@ -11,7 +11,7 @@
         </li>
         <li class="nav-item">
           
-          <%= button_to "Googleでログイン", "/auth/google_oauth2", method: :post %>
+          <%= button_to "Googleでログイン", "/auth/google_oauth2", method: :post, form: { data: { turbo: false } } %>
         </li>
       </ul>
     </div>
