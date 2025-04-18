@@ -115,12 +115,20 @@ class TasksController < ApplicationController
       last_appointment_date = last_schedule&.appointment_date
       # 訪問頻度（日数）を取得
       visit_interval = clinic.visit_intervals.first&.interval
-
       # 次回訪問日を計算
       if last_appointment_date
         next_visit_date = last_appointment_date + visit_interval
       else
-        next_visit_date = start_date + visit_interval
+        # next_visit_date = start_date + visit_interval
+        next_visit_date = nil
+        (start_date..(start_date + 7.days)).each do |d|
+          wday = Date::DAYNAMES[d.wday]
+          match = clinic.available_times.find { |at| at.weekday.downcase == wday.downcase }
+          if match
+            next_visit_date = d
+            break
+          end
+        end
       end
       { clinic: clinic, next_visit_date: next_visit_date }
     end
@@ -135,17 +143,19 @@ class TasksController < ApplicationController
           clinic = data[:clinic]
           next_visit_date = data[:next_visit_date]
 
-            clinic.available_times.any? do |available_time|
-              available_time.weekday == Date::DAYNAMES[weekday] &&
-              available_time.available_time_slot == time
+          (0..6).any? do |offset|
+            target_date = next_visit_date + offset
+            target_weekday = Date::DAYNAMES[target_date.wday]
+
+            target_date == date && clinic.available_times.any? do |available_time|
+                available_time.weekday == target_weekday &&
+                available_time.available_time_slot == time
             end
+          end
         end
         # 訪問可能クリニックがある場合、スケジュールを保存
         if available_clinics.any?
-          selected_clinic_data = available_clinics
-          .select { |data| data[:next_visit_date] >= date } # 未来の日程のみ考慮
-          .min_by { |data| (data[:next_visit_date] - date).abs }
-
+          selected_clinic_data = available_clinics.first
           clinic = selected_clinic_data[:clinic]
 
           # スケジュールが未登録の場合のみ保存
