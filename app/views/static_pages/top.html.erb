@@ -1,2 +1,15 @@
 <div class="top-wrapper">
 </div>
+
+<% if current_user.nil? %>
+  <div class="container text-center">
+    <p class="display-6 mt-3 mb-3">Clinico for MR</p>
+    <p class="lead mb-4">
+      MRのための、顧客管理・スケジュール管理ツール<br>
+      快適で効率的なMR活動をサポートします。<br>
+    </p>
+    <%= render "layouts/usage_guide" %>
+  </div>
+<% end %>
+
+</div>
