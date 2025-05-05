@@ -15,15 +15,17 @@
           <td><%= product.product_number %></td>
           <td><%= product.product_name %></td>
           <td><%= product.diagnosis %></td>
-          <td class="text-end">
-            <%= link_to edit_product_path(product), id: 'button-edit-#{product.id}' do %>
-              <i class="bi bi-pencil-fill"></i>
-            <% end %>
-          <!-- 削除ボタン -->
-            <%= button_to product_path(product), method: :delete, data: { turbo_confirm: "本当に削除しますか？" }, class: "btn-icon", id: "button-delete-#{product.id}" do %>
-             <i class="bi bi-trash-fill"></i>
-            <% end %>
-          </td>
+          <% if current_user.own?(product) %>
+            <td class="text-end">
+              <%= link_to edit_product_path(product), id: 'button-edit-#{product.id}' do %>
+                <i class="bi bi-pencil-fill"></i>
+              <% end %>
+            <!-- 削除ボタン -->
+              <%= button_to product_path(product), method: :delete, data: { turbo_confirm: "本当に削除しますか？" }, class: "btn-icon", id: "button-delete-#{product.id}" do %>
+              <i class="bi bi-trash-fill"></i>
+              <% end %>
+            </td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
