@@ -1,4 +1,7 @@
 <div class="top-wrapper">
+<% if logged_in? %>
+  <%= render 'layouts/sidebar' %>
+<% end %>
 </div>
 
 <% if current_user.nil? %>
