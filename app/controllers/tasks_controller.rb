@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :delete_expired_submissions, only: :index
+  before_action :set_times, only: [:index, :new, :create, :auto_schedule]
 
   DAY_MAPPING = {
     "Monday" => "Monday",
@@ -16,9 +17,6 @@ class TasksController < ApplicationController
     # スケジュールデータを取得
     @schedules = Schedule.includes(:clinic).where(appointment_date: @dates)
 
-    # 表示する時間帯を定義
-    @times = [ "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "17:00", "18:00" ]
-
     # 提出物のデータを取得
     @submissions = Submission.includes(:user)
   end
@@ -29,11 +27,9 @@ class TasksController < ApplicationController
 
     @schedules = Schedule.includes(:clinic).where(appointment_date: @dates)
     # 表示する時間帯を定義
-    @times = [ "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "17:00", "18:00" ]
   end
 
   def create
-    @times = [ "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "17:00", "18:00" ]
     @dates = (0..60).map { |i| Date.today + i }
     @schedules = Schedule.includes(:clinic).where(appointment_date: @dates)
 
@@ -95,7 +91,6 @@ class TasksController < ApplicationController
   end
 
   def auto_schedule
-    @times = [ "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "17:00", "18:00" ]
     # 2か月間のスケジュール期間
     start_date = Date.today
     end_date = start_date + 2.months
@@ -177,5 +172,9 @@ class TasksController < ApplicationController
 
   def delete_expired_submissions
     Submission.where("due_date < ?", Date.today).destroy_all
+  end
+
+  def set_times
+    @times = [ "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "17:00", "18:00" ]
   end
 end
