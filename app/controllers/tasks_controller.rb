@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :delete_expired_submissions, only: :index
-  before_action :set_times, only: [:index, :new, :create, :auto_schedule]
+  before_action :set_times, only: [ :index, :new, :create, :auto_schedule ]
 
   DAY_MAPPING = {
     "Monday" => "Monday",
