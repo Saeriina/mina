@@ -5,38 +5,38 @@
       <%= form_with model: @clinic, class: "new_clinic" do |f| %>
         <!-- クリニック名 -->
         <div class="mb-3">
-          <%= f.label :clinic_name, "クリニック名" %>
+          <%= f.label :clinic_name %>
           <%= f.text_field :clinic_name, class: "form-control" %>
         </div>
 
         <!-- ドクター名 -->
         <div class="mb-3">
-          <%= f.label :doctor_name, "ドクター名" %>
+          <%= f.label :doctor_name %>
           <%= f.text_field :doctor_name, class: "form-control" %>
         </div>
 
         <!-- クリニックホームページurl -->
         <div class="mb-3">
-	        <%= f.label :url, "URL" %>
+	        <%= f.label :url %>
 	        <%= f.text_field :url, class: "form-control" %>
         </div>
 
         <!-- 住所 -->
         <div class="mb-3">
-          <%= f.label :address, "住所" %>
+          <%= f.label :address %>
           <%= f.text_field :address, class: "form-control" %>
         </div>
 
         <%= f.fields_for :available_times do |at| %>
           <!-- 曜日の選択 -->
           <div class="mb-3">
-            <%= at.label :weekday, "曜日" %>
+            <%= at.label :weekday %>
             <%= at.select :weekday, options_for_select(%w[Monday Tuesday Wednesday Thursday Friday]), {}, class: "form-select" %>
           </div>
         
           <!-- 面会可能な時間帯 -->
           <div class="mb-2">
-            <%= at.label :available_time_slot, "時間" %>
+            <%= at.label :available_time_slot %>
             <%= at.select :available_time_slot, options_for_select(%w[12:00 12:30 13:00 13:30 14:00 14:30 15:00 15:30 16:00 17:00 18:00]), {}, class: "form-select" %>
           </div>
         <% end %>
@@ -44,7 +44,7 @@
         <!-- 面会頻度 -->
         <div class="mb-3">
           <%= f.fields_for :visit_intervals do |vi| %>
-            <%= vi.label :interval, "訪問頻度" %>
+            <%= vi.label :interval %>
             <%= vi.select :interval, [["30日", 30],["45日", 45], ["60日", 60], ["90日", 90], ["120日", 120], ["180日", 180], ["360日", 360]], {}, class: "form-select" %>
           <% end %>
         </div>

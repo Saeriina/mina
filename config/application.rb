@@ -29,5 +29,7 @@ module Myapp
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore, key: "_myapp_session"
     config.middleware.insert_after ActionDispatch::Cookies, OmniAuth::Builder
+
+    config.i18n.default_locale = :ja
   end
 end

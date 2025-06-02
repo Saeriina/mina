@@ -1,0 +1,31 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      clinic: クリニック
+      product: 製品
+      schedule: スケジュール
+      submission: 提出物
+    
+    attributes:
+      user:
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード確認
+      clinic:
+        clinic_name: クリニック名
+        doctor_name: ドクター名
+        url: クリニックホームページURL
+        address: 住所
+      available_time:
+        weekday: 訪問可能曜日
+        available_time_slot: 訪問可能時間
+      visit_interval:
+        interval: 訪問頻度
+      product:
+        product_name: 製品名
+        product_number: 製品番号
+        diagnosis: 適応病名
+
+

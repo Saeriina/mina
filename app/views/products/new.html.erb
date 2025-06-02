@@ -4,15 +4,15 @@
       <h1><%= "製品登録" %></h1>
       <%= form_with model: @product, class: "new_product" do |f| %>
         <div class="mb-3">
-          <%= f.label :product_name, "製品名" %>
+          <%= f.label :product_name %>
           <%= f.text_field :product_name, class: "form-control" %>
         </div>
         <div class="mb-3">
-          <%= f.label :product_number, "製品番号" %>
+          <%= f.label :product_number %>
           <%= f.text_field :product_number, class: "form-control" %>
         </div>
         <div class="mb-3">
-          <%= f.label :diagnosis, "適応病名" %>
+          <%= f.label :diagnosis %>
           <%= f.text_field :diagnosis, class: "form-control" %>
         </div>
         

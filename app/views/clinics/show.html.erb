@@ -22,9 +22,9 @@
       <% end %>
 
           <!-- 基本情報 -->
-          <p class="text-muted"><strong>ホームページ:</strong> <%= @clinic.url %></p>
-          <p class="text-muted"><strong>院長名:</strong> <%= @clinic.doctor_name %></p>
-          <p class="text-muted"><strong>住所:</strong> <%= @clinic.address %></p>
+          <p class="text-muted"><strong><%= t('activerecord.attributes.clinic.clinic_name') %></strong> <%= @clinic.url %></p>
+          <p class="text-muted"><strong><%= t('activerecord.attributes.clinic.doctor_name') %></strong> <%= @clinic.doctor_name %></p>
+          <p class="text-muted"><strong><%= t('activerecord.attributes.clinic.address') %></strong> <%= @clinic.address %></p>
 
           <!-- Googleマップ表示エリア(地図を表示) -->
           <div id="map"style="height: 600px;"></div>
@@ -66,10 +66,10 @@
           <% if @clinic.available_times.any? %>
             <% @clinic.available_times.each do |time| %>
               <p class="text-muted">
-                <strong>面会時間:</strong> <%= time.available_time_slot.gsub(/[\[\]\"]/, '') %>
+                <strong><%= t('activerecord.attributes.available_time.available_time_slot') %></strong> <%= time.available_time_slot.gsub(/[\[\]\"]/, '') %>
               </p>
               <p class="text-muted">
-                <strong>曜日:</strong> <%= time.weekday.gsub(/[\[\]\"]/, '') %>
+                <strong><%= t('activerecord.attributes.available_time.weekday') %>:</strong> <%= time.weekday.gsub(/[\[\]\"]/, '') %>
               </p>
             <% end %>
           <% else %>
@@ -81,7 +81,7 @@
           <% if @clinic.visit_intervals.any? %>
                 <% @clinic.visit_intervals.each do |i| %>
                   <p class="text-muted">
-                    <strong>面会頻度:</strong> <%= "#{i.interval}日に一回程度" %>
+                    <strong><%= t('activerecord.attributes.visit_interval.interval') %>:</strong> <%= "#{i.interval}日に一回程度" %>
                   </p>
                 <% end %>
             </ul>
