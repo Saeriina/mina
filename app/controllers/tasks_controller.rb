@@ -14,18 +14,20 @@ class TasksController < ApplicationController
     # 表示する日付を生成
     @dates = (0..6).map { |i| Date.today + i }
 
+    # 自分が登録したクリニックのIDを取得
+    my_clinic_ids = current_user.clinics.pluck(:id)
     # スケジュールデータを取得
-    @schedules = Schedule.includes(:clinic).where(appointment_date: @dates)
+    @schedules = Schedule.includes(:clinic).where(clinic_id: my_clinic_ids, appointment_date: @dates)
 
     # 提出物のデータを取得
-    @submissions = Submission.includes(:user)
+    @submissions = Submission.includes(:user).where(user_id: current_user.id)
   end
 
   def new
     # 表示する日付を生成
     @dates = (0..60).map { |i| Date.today + i }
-
-    @schedules = Schedule.includes(:clinic).where(appointment_date: @dates)
+    my_clinic_ids = current_user.clinics.pluck(:id)
+    @schedules = Schedule.includes(:clinic).where(clinic_id: my_clinic_ids, appointment_date: @dates)
     # 表示する時間帯を定義
   end
 
@@ -34,7 +36,7 @@ class TasksController < ApplicationController
     @schedules = Schedule.includes(:clinic).where(appointment_date: @dates)
 
     input_clinic_name = params[:clinic_name]
-    matching_clinic = Clinic.find_by(clinic_name: input_clinic_name)
+    matching_clinic = current_user.clinics.find_by(clinic_name: input_clinic_name)
 
     if matching_clinic
       # フォームから送信された値を取得
@@ -100,7 +102,7 @@ class TasksController < ApplicationController
     schedule_times = @times # 既存ロジックから時間リストを取得
 
     # 全クリニックの訪問可能時間と頻度を取得
-    clinics = Clinic.includes(:available_times, :visit_intervals).all
+    clinics = current_user.clinics.includes(:available_times, :visit_intervals).all
 
     # クリニックごとの次回訪問可能日を計算
     next_visit_dates = clinics.map do |clinic|
