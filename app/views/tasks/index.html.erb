@@ -2,7 +2,18 @@
 	<h1 class="mb-4">タスク管理ページ</h1>
 	<!-- 本日の日付 -->
 	<div class="d-flex justify-content-between align-items-center mb-4">
-		<h2>本日の日付: <%= Date.today.strftime('%Y年%m月%d日 (%a)') %></h2>
+		<%
+		day_mapping = {
+			"Mon" => "月",
+			"Tue" => "火",
+			"Wed" => "水",
+			"Thu" => "木",
+			"Fri" => "金",
+			"Sat" => "土",
+			"Sun" => "日"
+		}
+		%>
+		<h2>本日の日付: <%= Date.today.strftime('%Y年%m月%d日') %>（<%= day_mapping[Date.today.strftime('%a')] %>）</h2>
 		<a href="<%= new_task_path %>" class="btn btn-primary">スケジュールを作成</a>
 	</div>
 
@@ -21,7 +32,7 @@
 				<% @dates.each do |date| %>
 					<tr>
 						<td>
-							<p><%= date.strftime('%Y年%m月%d日 (%a)') %></p>
+							<p><%= date.strftime('%Y年%m月%d日') %>（<%= day_mapping[date.strftime('%a')] %>）</p>
 						</td>
 						<% @times.each do |time| %>	
 						<td>
