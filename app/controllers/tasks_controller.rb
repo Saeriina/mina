@@ -37,7 +37,7 @@ class TasksController < ApplicationController
     @schedules = Schedule.includes(:clinic).where(appointment_date: @dates)
 
     input_clinic_name = params[:clinic_name]
-    matching_clinic = current_user.clinics.find_by(clinic_name: input_clinic_name) #保存されているクリニックかを確認
+    matching_clinic = current_user.clinics.find_by(clinic_name: input_clinic_name) # 保存されているクリニックかを確認
 
     if matching_clinic
       # フォームから送信された値を取得
@@ -144,8 +144,7 @@ class TasksController < ApplicationController
 
           (0..6).any? do |offset|
             target_date = next_visit_date + offset
-            #target_weekday = Date::DAYNAMES[target_date.wday]
-            target_weekday = DAY_MAPPING[target_date.strftime('%a')]
+            target_weekday = DAY_MAPPING[target_date.strftime("%a")]
 
             target_date == date && clinic.available_times.any? do |available_time|
                 available_time.weekday == target_weekday &&
