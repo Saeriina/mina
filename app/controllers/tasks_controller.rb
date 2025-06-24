@@ -2,13 +2,15 @@ class TasksController < ApplicationController
   before_action :delete_expired_submissions, only: :index
   before_action :set_times, only: [ :index, :new, :create, :auto_schedule ]
 
-  DAY_MAPPING = {
-    "Monday" => "Monday",
-    "Tuesday" => "Tuesday",
-    "Wednesday" => "Wednesday",
-    "Thursday" => "Thursday",
-    "Friday" => "Friday"
-  }.freeze
+    DAY_MAPPING = {
+      "Sun" => "日",
+      "Mon" => "月",
+      "Tue" => "火",
+      "Wed" => "水",
+      "Thu" => "木",
+      "Fri" => "金",
+      "Sat" => "土"
+    }.freeze
 
   def index
     # 表示する日付を生成
@@ -28,7 +30,6 @@ class TasksController < ApplicationController
     @dates = (0..60).map { |i| Date.today + i }
     my_clinic_ids = current_user.clinics.pluck(:id)
     @schedules = Schedule.includes(:clinic).where(clinic_id: my_clinic_ids, appointment_date: @dates)
-    # 表示する時間帯を定義
   end
 
   def create
@@ -36,7 +37,7 @@ class TasksController < ApplicationController
     @schedules = Schedule.includes(:clinic).where(appointment_date: @dates)
 
     input_clinic_name = params[:clinic_name]
-    matching_clinic = current_user.clinics.find_by(clinic_name: input_clinic_name)
+    matching_clinic = current_user.clinics.find_by(clinic_name: input_clinic_name) # 保存されているクリニックかを確認
 
     if matching_clinic
       # フォームから送信された値を取得
@@ -44,8 +45,8 @@ class TasksController < ApplicationController
       scheduled_time = params[:scheduled_time]
 
       # 日付から曜日を取得してマッピング
-      appointment_weekday = Date.parse(appointment_date).strftime("%A") # 例: "Monday"
-      available_weekday = DAY_MAPPING[appointment_weekday] # 例: "Mon"
+      appointment_weekday = Date.parse(appointment_date).strftime("%a") # 例: "Mon"
+      available_weekday = DAY_MAPPING[appointment_weekday] # 例: "月"
 
       # AvailableTimeの確認
       available_time = AvailableTime.where(
@@ -116,11 +117,12 @@ class TasksController < ApplicationController
       if last_appointment_date
         next_visit_date = last_appointment_date + visit_interval
       else
-        # next_visit_date = start_date + visit_interval
         next_visit_date = nil
         (start_date..(start_date + 7.days)).each do |d|
-          wday = Date::DAYNAMES[d.wday]
-          match = clinic.available_times.find { |at| at.weekday.downcase == wday.downcase }
+          wday_en = Date::ABBR_DAYNAMES[d.wday]    # 例: "Mon"
+          wday_ja = DAY_MAPPING[wday_en]           # 例: "月"
+
+          match = clinic.available_times.find { |at| at.weekday == wday_ja }
           if match
             next_visit_date = d
             break
@@ -142,7 +144,7 @@ class TasksController < ApplicationController
 
           (0..6).any? do |offset|
             target_date = next_visit_date + offset
-            target_weekday = Date::DAYNAMES[target_date.wday]
+            target_weekday = DAY_MAPPING[target_date.strftime("%a")]
 
             target_date == date && clinic.available_times.any? do |available_time|
                 available_time.weekday == target_weekday &&

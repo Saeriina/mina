@@ -1,0 +1,7 @@
+ja:
+  date:
+    formats:
+      long_with_day: "%Y年%m月%d日（%A）"
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M"
