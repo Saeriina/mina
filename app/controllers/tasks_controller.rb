@@ -171,7 +171,7 @@ class TasksController < ApplicationController
       end
     end
     # スケジュール作成後にタスク一覧ページへリダイレクト
-    redirect_to tasks_path, notice: "スケジュールが自動作成されました。"
+    redirect_to tasks_path, success: "スケジュールが自動作成されました。"
   end
 
   def delete_expired_submissions
